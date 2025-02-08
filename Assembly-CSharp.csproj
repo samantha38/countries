@@ -65,10 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\BirdScript.cs" />
     <Compile Include="Assets\LogicScript.cs" />
-    <Compile Include="Assets\CountryManager.cs" />
-    <Compile Include="Assets\PipeMoveScript.cs" />
-    <Compile Include="Assets\PipeMiddleScript.cs" />
-    <Compile Include="Assets\PipeSpawnerScript.cs" />
+    <Compile Include="Assets\CountryNameDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
