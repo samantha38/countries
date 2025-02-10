@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d7edc2bbf7907f245b9a01aef69318b8
+guid: 3742a90d7b40b644093753ebb3a107f5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - countryText: {fileID: 8552336937977097495, guid: 235bad7792fca3a41bd351a3ddd1c9f9, type: 3}
+  - letterText: {fileID: 153184426866308062, guid: 07bfe61c480853543a12c8cc8df721f5, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

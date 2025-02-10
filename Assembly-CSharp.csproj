@@ -64,8 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BirdScript.cs" />
+    <Compile Include="Assets\Letter.cs" />
     <Compile Include="Assets\LogicScript.cs" />
     <Compile Include="Assets\CountryNameDisplay.cs" />
+    <Compile Include="Assets\LetterSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

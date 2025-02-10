@@ -3,7 +3,10 @@ guid: 6941c4207f662604599c1b1f1810608a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - scoreText: {fileID: 2721945083090266512, guid: bf0e907d112ca19419692ff31ad42997, type: 3}
+  - gameOverPanel: {fileID: 398129263791849920, guid: f6f959ef8111049438589f205cb5e46f, type: 3}
+  - restartButton: {fileID: 1771288509483612964, guid: 88be1c7079fe4ee4dbd04c503f23068d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class CountryNameDisplay : MonoBehaviour
 {
-    public Text countryText; // Reference to the UI Text component
+    public Text countryText;  // Reference to the UI Text component
     private string currentCountry;
     private string hiddenCountry;
 
@@ -29,7 +29,7 @@ public class CountryNameDisplay : MonoBehaviour
         char[] hiddenArray = word.ToCharArray();
         for (int i = 0; i < hiddenArray.Length; i++)
         {
-            if (Random.value > 0.5f) // 50% chance to hide a letter
+            if (Random.value > 0.5f)  // 50% chance to hide a letter
             {
                 hiddenArray[i] = '_';
             }
@@ -40,5 +40,20 @@ public class CountryNameDisplay : MonoBehaviour
     public string GetCurrentCountry()
     {
         return currentCountry;
+    }
+
+    public void UpdateHiddenCountry(char correctLetter)
+    {
+        char[] displayedArray = hiddenCountry.ToCharArray();
+        for (int i = 0; i < currentCountry.Length; i++)
+        {
+            if (currentCountry[i] == correctLetter && displayedArray[i] == '_')
+            {
+                displayedArray[i] = correctLetter;
+            }
+        }
+
+        hiddenCountry = new string(displayedArray);
+        countryText.text = hiddenCountry;
     }
 }
