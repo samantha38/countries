@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private float spawnTimer;
 
+    private int lives = 3;
+[SerializeField] private Text livesText; // UI element to display lives
+
+
     void Awake()
     {
         if (Instance == null)
@@ -40,8 +44,20 @@ public class GameManager : MonoBehaviour
     private void UpdateUI()
 {
     scoreText.text = $"Score: {score}";
-    collectedLettersText.text = $"Letters: {string.Join("", collectedLetters)}\nTarget: {currentCountry}";
+    collectedLettersText.text = $"Target: {GetCountryWithBlanks()}";
+    
+    if (livesText != null) 
+    {
+        livesText.text = $"Lives: {lives}";
+        Debug.Log($"Updated UI: Lives = {lives}");
+    }
+    else 
+    {
+        Debug.LogError("livesText is not assigned in the Inspector!");
+    }
 }
+
+
 
     void Update()
 {
@@ -106,14 +122,37 @@ public class GameManager : MonoBehaviour
     rb.linearVelocity = new Vector2(-2f, 0); // Move left at a speed of 2 units per second
 }
 
+private void GameOver()
+{
+    Debug.Log("Game Over!"); 
+    Time.timeScale = 0; // Stop the game
+    // You can add UI to show "Game Over" message here
+}
 
     public void CollectLetter(char letter)
+{
+    Debug.Log($"GameManager collecting letter: {letter}");
+    
+    if (currentCountry.Contains(letter)) 
     {
-        Debug.Log($"GameManager collecting letter: {letter}");
-        collectedLetters.Add(letter);
-        UpdateUI();
+        collectedLetters.Add(letter); // Correct letter
         CheckWord();
     }
+    else 
+    {
+        lives--; // Wrong letter, lose a life
+        Debug.Log($"Wrong letter! Lives left: {lives}");
+        
+        if (lives <= 0)
+        {
+            GameOver();
+            return;
+        }
+    }
+    
+    UpdateUI();
+}
+
 
     private IEnumerable<string> GetPermutations(string source, int length)
 {
@@ -146,7 +185,7 @@ public class GameManager : MonoBehaviour
             }
             
             // If we have too many letters and still haven't found a match, clear and start over
-            if (collectedLetters.Count > currentCountry.Length + 2)
+            if (collectedLetters.Count > currentCountry.Length)
             {
                 collectedLetters.Clear();
                 UpdateUI();
@@ -154,6 +193,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
-
+    private char GetNextCorrectLetter()
+{
+    foreach (char letter in currentCountry)
+    {
+        if (!collectedLetters.Contains(letter))
+            return letter; // Return the first missing letter
+    }
+    return '\0'; // Return null character if all letters are collected
 }
+
+
+private string GetCountryWithBlanks()
+{
+    string modifiedCountry = "";
+    
+    for (int i = 0; i < currentCountry.Length; i++)
+    {
+        if (i == 0 || collectedLetters.Contains(currentCountry[i]))
+            modifiedCountry += currentCountry[i] + " "; // Show the first letter & collected ones
+        else
+            modifiedCountry += "_ "; // Hide the rest
+    }
+
+    return modifiedCountry;
+}
+
+}  
+
