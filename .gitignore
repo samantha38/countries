@@ -1,0 +1,40 @@
+# Unity auto-generated folders
+Library/
+Temp/
+Logs/
+obj/
+.vs/
+Builds/
+UserSettings/
+
+# Ignore Unity crash logs
+CrashReports/
+MemoryCaptures/
+
+# Ignore Unity package and metadata files
+*.unitypackage
+*.pidb
+*.meta
+
+# Ignore compiled binaries
+*.dll
+*.exe
+*.so
+*.dylib
+*.pdb
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+*.suo
+*.user
+*.csproj
+*.sln*
+*.unityproj
+
+# Ignore system-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore Git itself
+.git/
