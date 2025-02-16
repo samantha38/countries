@@ -64,7 +64,10 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.37f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <Compile Include="Assets\ScreenSizeChecker.cs" />
+=======
+>>>>>>> Stashed changes
     <Compile Include="Assets\Scripts\BirdController.cs" />
     <Compile Include="Assets\Scripts\LetterBehavior.cs" />
     <Compile Include="Assets\BackgroundController.cs" />

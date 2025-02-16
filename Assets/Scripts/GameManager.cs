@@ -2,6 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+<<<<<<< Updated upstream
+=======
+using UnityEngine.SceneManagement;
+
+>>>>>>> Stashed changes
 
 public class GameManager : MonoBehaviour
 {
@@ -11,18 +16,42 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text collectedLettersText;
     [SerializeField] private Text livesText;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] private GameObject gameOverPanel;
+>>>>>>> Stashed changes
     
     [SerializeField] private float spawnInterval = 3f;
     [SerializeField] private Vector2 spawnAreaMin = new Vector2(-8f, -4f);
     [SerializeField] private Vector2 spawnAreaMax = new Vector2(8f, 4f);
+<<<<<<< Updated upstream
 
     private List<string> countries = new List<string> { "FRANCE", "SPAIN", "ITALY", "GERMANY", "BRAZIL", "CANADA", "INDIA", "JAPAN", "CHINA", "RUSSIA", "MEXICO", "ARGENTINA", "EGYPT", "TURKEY", "AUSTRALIA" };
+=======
+    [SerializeField] private GameObject bird;
+
+
+    private List<string> countries = new List<string> 
+{
+    "FRANCE", "SPAIN", "ITALY", "GERMANY", "BRAZIL", "CANADA", "INDIA", "JAPAN", "CHINA", "RUSSIA", 
+    "MEXICO", "ARGENTINA", "EGYPT", "TURKEY", "AUSTRALIA", "UNITEDSTATES", "UNITEDKINGDOM", "NETHERLANDS", "SWEDEN", "NORWAY", 
+    "FINLAND", "DENMARK", "BELGIUM", "SWITZERLAND", "AUSTRIA", "POLAND", "CZECHIA", "PORTUGAL", "GREECE", "HUNGARY", 
+    "UKRAINE", "ROMANIA", "SOUTHAFRICA", "NIGERIA", "KENYA", "MOROCCO", "NEWZEALAND", "SOUTHKOREA", "VIETNAM", "THAILAND", 
+    "PHILIPPINES", "INDONESIA", "MALAYSIA", "SINGAPORE", "PAKISTAN", "BANGLADESH", "SAUDIARABIA", "UNITEDARABEMIRATES", "IRAN", "IRAQ"
+};
+
+>>>>>>> Stashed changes
     private string currentCountry;
     private HashSet<char> collectedLetters = new HashSet<char>();
     private int score = 0;
     private float spawnTimer;
     private int lives = 3;
     private float correctLetterProbability = 0.5f;
+<<<<<<< Updated upstream
+=======
+    private bool isGameOver = false;
+
+>>>>>>> Stashed changes
 
     void Awake()
     {
@@ -33,9 +62,18 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
+<<<<<<< Updated upstream
     {
         StartNewRound();
     }
+=======
+{
+    Time.timeScale = 1;  
+    isGameOver = false;  
+    gameOverPanel.SetActive(false); // Hide Game Over screen at the start
+    StartNewRound();
+}
+>>>>>>> Stashed changes
 
     private void UpdateUI()
     {
@@ -64,6 +102,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0)
         {
@@ -73,11 +115,23 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject letter in GameObject.FindGameObjectsWithTag("Letter"))
         {
+<<<<<<< Updated upstream
             if (letter.transform.position.x < Camera.main.ViewportToWorldPoint(new Vector3(-0.2f, 0, 0)).x)
+=======
+            
+>>>>>>> Stashed changes
             {
                 Destroy(letter);
             }
         }
+<<<<<<< Updated upstream
+=======
+         float lowerBoundary = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y - 1.3f; // Extend below the screen
+        if (bird.transform.position.y < lowerBoundary) // Adjust -5f based on your game’s ground level
+    {
+        GameOver();
+    }
+>>>>>>> Stashed changes
     }
 
     private void StartNewRound()
@@ -116,11 +170,33 @@ public class GameManager : MonoBehaviour
         rb.linearVelocity = new Vector2(-2f, 0);
     }
 
+<<<<<<< Updated upstream
     public void GameOver()
     {
         Debug.Log("Game Over!");
         Time.timeScale = 0;
     }
+=======
+    private void GameOver()
+{
+    if (isGameOver) return; // Prevents repeated calls
+
+    isGameOver = true; // Set game over state
+    Debug.Log("Game Over!");
+    Time.timeScale = 0; // Pause game
+    gameOverPanel.SetActive(true); // Show Game Over UI
+}
+
+
+    public void PlayAgain()
+{
+    Time.timeScale = 1;  // Resume game time
+    isGameOver = false;  // Reset game over state
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload scene
+}
+
+
+>>>>>>> Stashed changes
 
     public void CollectLetter(char letter)
     {
