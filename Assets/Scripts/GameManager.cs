@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,18 +11,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text collectedLettersText;
     [SerializeField] private Text livesText;
-    [SerializeField] private Text gameOverText; // Assign in Unity
+    
     [SerializeField] private float spawnInterval = 3f;
     [SerializeField] private Vector2 spawnAreaMin = new Vector2(-8f, -4f);
     [SerializeField] private Vector2 spawnAreaMax = new Vector2(8f, 4f);
 
-    private List<string> countries = new List<string> { "FRANCE", "SPAIN", "ITALY", "GERMANY", "BRAZIL" };
+    private List<string> countries = new List<string> { "FRANCE", "SPAIN", "ITALY", "GERMANY", "BRAZIL", "CANADA", "INDIA", "JAPAN", "CHINA", "RUSSIA", "MEXICO", "ARGENTINA", "EGYPT", "TURKEY", "AUSTRALIA" };
     private string currentCountry;
-    private List<char> collectedLetters = new List<char>();
+    private HashSet<char> collectedLetters = new HashSet<char>();
     private int score = 0;
-    private int lives = 3;
     private float spawnTimer;
-    private float correctLetterProbability = 70f; // Start at 70%
+    private int lives = 3;
+    private float correctLetterProbability = 0.5f;
 
     void Awake()
     {
@@ -35,8 +34,32 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        gameOverText.gameObject.SetActive(false); // Hide "Game Over" at the start
         StartNewRound();
+    }
+
+    private void UpdateUI()
+    {
+        if (scoreText == null || collectedLettersText == null || livesText == null)
+        {
+            Debug.LogError("UI Text references are missing in the Inspector!");
+            return;
+        }
+
+        // Ensure Text is enabled
+        scoreText.enabled = true;
+        livesText.enabled = true;
+        collectedLettersText.enabled = true;
+
+        // Update UI text
+        scoreText.text = $"Score: {score}";
+        collectedLettersText.text = $"Target: {GetCountryWithBlanks()}";
+        livesText.text = $"Lives: {lives}";
+
+        Debug.Log($"Updated UI -> Score: {score}, Lives: {lives}, Target: {currentCountry}");
+
+        // Force UI Refresh
+        scoreText.enabled = false;
+        scoreText.enabled = true;
     }
 
     void Update()
@@ -48,7 +71,6 @@ public class GameManager : MonoBehaviour
             spawnTimer = spawnInterval;
         }
 
-        // Destroy letters that go off-screen
         foreach (GameObject letter in GameObject.FindGameObjectsWithTag("Letter"))
         {
             if (letter.transform.position.x < Camera.main.ViewportToWorldPoint(new Vector3(-0.2f, 0, 0)).x)
@@ -60,11 +82,11 @@ public class GameManager : MonoBehaviour
 
     private void StartNewRound()
     {
+        Debug.Log("Starting New Round...");
         currentCountry = countries[Random.Range(0, countries.Count)];
         collectedLetters.Clear();
         UpdateUI();
 
-        // Clear existing letters
         foreach (GameObject letter in GameObject.FindGameObjectsWithTag("Letter"))
         {
             Destroy(letter);
@@ -80,31 +102,24 @@ public class GameManager : MonoBehaviour
         GameObject letterObj = Instantiate(letterPrefab, spawnPos, Quaternion.identity);
 
         char letterToSpawn;
-        if (Random.value * 100 < correctLetterProbability)
-        {
+        if (Random.value < correctLetterProbability)
             letterToSpawn = currentCountry[Random.Range(0, currentCountry.Length)];
-        }
         else
-        {
             letterToSpawn = (char)Random.Range('A', 'Z' + 1);
-        }
 
         var letterBehavior = letterObj.GetComponent<LetterBehavior>();
         if (letterBehavior != null)
-        {
             letterBehavior.Initialize(letterToSpawn);
-        }
 
         Rigidbody2D rb = letterObj.AddComponent<Rigidbody2D>();
         rb.gravityScale = 0;
-        rb.velocity = new Vector2(-2f, 0);
+        rb.linearVelocity = new Vector2(-2f, 0);
     }
 
     private void GameOver()
     {
-        gameOverText.text = "GAME OVER";
-        gameOverText.gameObject.SetActive(true); // Show "Game Over"
-        Time.timeScale = 0; // Stop the game
+        Debug.Log("Game Over!");
+        Time.timeScale = 0;
     }
 
     public void CollectLetter(char letter)
@@ -112,6 +127,7 @@ public class GameManager : MonoBehaviour
         if (currentCountry.Contains(letter))
         {
             collectedLetters.Add(letter);
+            Debug.Log($"Collected: {new string(collectedLetters.OrderBy(c => c).ToArray())}");
             CheckWord();
         }
         else
@@ -128,72 +144,45 @@ public class GameManager : MonoBehaviour
 
     private void CheckWord()
     {
-        string collected = new string(collectedLetters.ToArray());
+        bool allLettersCollected = currentCountry.All(c => collectedLetters.Contains(c));
 
-        if (collectedLetters.Count >= currentCountry.Length)
+        if (allLettersCollected)
         {
-            var possibleWords = GetPermutations(collected, currentCountry.Length);
-            foreach (string word in possibleWords)
-            {
-                if (word == currentCountry)
-                {
-                    score += 10; // Update score
-                    if (lives < 3)
-                        lives++; // Reward 1 life if not max
+            Debug.Log("Correct word collected! Score awarded.");
+            score += 100;
+            if (lives < 3)
+                lives++;
 
-                    correctLetterProbability = Mathf.Clamp(correctLetterProbability - 3, 30, 70); // Adjust probability
+            correctLetterProbability = Mathf.Max(correctLetterProbability - 0.03f, 0.2f);
 
-                    StartCoroutine(TransitionToNextCountry()); // Transition immediately
-                    return;
-                }
-            }
+            UpdateUI();
+            Invoke(nameof(StartNewRound), 1f);
         }
-    }
-
-    private IEnumerator TransitionToNextCountry()
-    {
-        yield return new WaitForSeconds(0.5f); // Short delay before next round
-        StartNewRound();
-    }
-
-    private IEnumerable<string> GetPermutations(string source, int length)
-    {
-        if (length == 1) return source.Select(x => x.ToString());
-
-        return GetPermutations(source, length - 1)
-            .SelectMany(x => source.Where(y => !x.Contains(y)), (x, y) => x + y);
     }
 
     private string GetCountryWithBlanks()
     {
         string modifiedCountry = "";
-        int revealedLetters = 0;
+        List<char> revealedLetters = new List<char> { currentCountry[0] };
+
+        if (collectedLetters.Count == 0)
+        {
+            char extraLetter;
+            do
+            {
+                extraLetter = currentCountry[Random.Range(1, currentCountry.Length)];
+            } while (revealedLetters.Contains(extraLetter));
+            revealedLetters.Add(extraLetter);
+        }
 
         for (int i = 0; i < currentCountry.Length; i++)
         {
-            if (i == 0 || collectedLetters.Contains(currentCountry[i]))
-            {
+            if (revealedLetters.Contains(currentCountry[i]) || collectedLetters.Contains(currentCountry[i]))
                 modifiedCountry += currentCountry[i] + " ";
-                revealedLetters++;
-            }
-            else if (revealedLetters < 2) // Ensure at least 2 letters are shown
-            {
-                modifiedCountry += currentCountry[i] + " ";
-                revealedLetters++;
-            }
             else
-            {
                 modifiedCountry += "_ ";
-            }
         }
 
-        return modifiedCountry;
-    }
-
-    private void UpdateUI()
-    {
-        scoreText.text = $"Score: {score}";
-        collectedLettersText.text = $"Target: {GetCountryWithBlanks()}";
-        livesText.text = $"Lives: {lives}";
+        return modifiedCountry.Trim();
     }
 }
