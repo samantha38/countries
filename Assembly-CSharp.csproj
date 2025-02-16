@@ -65,8 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BirdController.cs" />
-    <Compile Include="Assets\Scripts\CountryManager.cs" />
     <Compile Include="Assets\Scripts\LetterBehavior.cs" />
+    <Compile Include="Assets\BackgroundController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
