@@ -8,11 +8,16 @@ public class BirdController : MonoBehaviour
     public float flapStrength = 5f; // Default flap strength
     public bool birdIsAlive = true;
 
+    private float lowerBoundary; // Stores the bottom boundary position
+
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>(); // Ensure Rigidbody2D is assigned
         myRigidbody.gravityScale = 1; // Enable gravity if it was disabled
         Debug.Log("Bird controller started");
+
+        // Calculate bottom boundary based on camera size
+        lowerBoundary = -Camera.main.orthographicSize;
     }
 
     void Update()
@@ -20,6 +25,14 @@ public class BirdController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && birdIsAlive) // Handles mouse click and touch
         {
             myRigidbody.linearVelocity = Vector2.up * flapStrength; // Apply upward force
+        }
+
+        // Check if bird touches the bottom boundary
+        if (transform.position.y <= lowerBoundary)
+        {
+            Debug.Log("Bird hit the bottom! Game Over!");
+            birdIsAlive = false;
+            GameManager.Instance.GameOver(); // Call Game Over function
         }
     }
 

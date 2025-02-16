@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         rb.linearVelocity = new Vector2(-2f, 0);
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         Debug.Log("Game Over!");
         Time.timeScale = 0;
