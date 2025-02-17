@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\ScreenSizeChecker.cs" />
     <Compile Include="Assets\Scripts\BirdController.cs" />
+    <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\LetterBehavior.cs" />
     <Compile Include="Assets\BackgroundController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
