@@ -56,9 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-<<<<<<< Updated upstream
-    "dotnet.defaultSolution": "countries.sln"
-=======
+    "countries.sln=======dotnet.defaultSolution": "branch_a.sln>>>>>>>Stashedchanges",
     "dotnet.defaultSolution": "branch_a.sln"
->>>>>>> Stashed changes
 }
