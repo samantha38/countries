@@ -16,7 +16,7 @@ PlayerSettings:
   productName: Flappy Whizz
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.12156863, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -39,8 +39,10 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
-  m_VirtualRealitySplashScreen: {fileID: 0}
+  m_SplashScreenLogos:
+  - logo: {fileID: 5612018384075239281, guid: 4592b7d9a03a19842b51860ed7887102, type: 3}
+    duration: 2
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 4592b7d9a03a19842b51860ed7887102, type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
@@ -264,7 +266,7 @@ PlayerSettings:
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
-  androidSplashScreen: {fileID: 0}
+  androidSplashScreen: {fileID: 2800000, guid: 4592b7d9a03a19842b51860ed7887102, type: 3}
   AndroidKeystoreName: C:/Users/lenovo/Desktop/gem.keystore
   AndroidKeyaliasName: gemgame
   AndroidEnableArmv9SecurityFeatures: 0
@@ -328,48 +330,6 @@ PlayerSettings:
       m_Height: 36
       m_Kind: 1
       m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 5b07bdb213a138f46b59949019fd6e1b, type: 3}
-      - {fileID: 2800000, guid: 5b07bdb213a138f46b59949019fd6e1b, type: 3}
-      m_Width: 432
-      m_Height: 432
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 5b07bdb213a138f46b59949019fd6e1b, type: 3}
-      - {fileID: 0}
-      m_Width: 324
-      m_Height: 324
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 5b07bdb213a138f46b59949019fd6e1b, type: 3}
-      - {fileID: 0}
-      m_Width: 216
-      m_Height: 216
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 5b07bdb213a138f46b59949019fd6e1b, type: 3}
-      - {fileID: 0}
-      m_Width: 162
-      m_Height: 162
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 5b07bdb213a138f46b59949019fd6e1b, type: 3}
-      - {fileID: 0}
-      m_Width: 108
-      m_Height: 108
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 5b07bdb213a138f46b59949019fd6e1b, type: 3}
-      - {fileID: 0}
-      m_Width: 81
-      m_Height: 81
-      m_Kind: 2
-      m_SubKind: 
     - m_Textures: []
       m_Width: 192
       m_Height: 192
@@ -399,6 +359,48 @@ PlayerSettings:
       m_Width: 36
       m_Height: 36
       m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      m_Width: 432
+      m_Height: 432
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      m_Width: 324
+      m_Height: 324
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      m_Width: 216
+      m_Height: 216
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      m_Width: 162
+      m_Height: 162
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      m_Width: 108
+      m_Height: 108
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      - {fileID: 2800000, guid: d3740fc4cf65bbd499fbc6cfe6226f53, type: 3}
+      m_Width: 81
+      m_Height: 81
+      m_Kind: 2
       m_SubKind: 
   m_BuildTargetBatching: []
   m_BuildTargetShaderSettings: []
@@ -766,7 +768,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -788,11 +796,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: efd12654-5245-49c5-86eb-0c5b68425179
+  cloudProjectId: d8e20a59-4482-4688-bd56-759b5fa8327f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: branch_a 2025-02-17_08-02-08
-  organizationId: samantha_15
+  projectName: Flappy Whizz (1)
+  organizationId: anushasj232
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
