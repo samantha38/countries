@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
-    private void SpawnLetter()
+   private void SpawnLetter()
     {
         Debug.Log("SpawnLetter called!");
         float y = Random.Range(spawnAreaMin.y, spawnAreaMax.y);

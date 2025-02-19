@@ -164,6 +164,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.com.Teknack.FlappyWhizz.FlappyWhizz
+    Standalone: com.com.Teknack.FlappyWhizz.Flappy-Whizz
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -785,7 +786,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 2
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
   cloudProjectId: efd12654-5245-49c5-86eb-0c5b68425179
   framebufferDepthMemorylessMode: 0
