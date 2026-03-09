@@ -57,5 +57,5 @@
         "Temp/": true
     },
     "countries.sln=======dotnet.defaultSolution": "branch_a.sln>>>>>>>Stashedchanges",
-    "dotnet.defaultSolution": "branch_a3.sln"
+    "dotnet.defaultSolution": "countries.sln"
 }
